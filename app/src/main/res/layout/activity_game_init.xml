@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameInitActivity">
+    tools:context=".GameInitActivity"
+    android:padding="20dp">
 
-</android.support.constraint.ConstraintLayout>
+    <Button android:id="@+id/btn_anya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="АНЯ"
+        android:textSize="30sp"
+        android:layout_centerVertical="true"/>
+
+    <Button android:id="@+id/btn_stepan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="СТЕПАН"
+        android:textSize="30sp"
+        android:layout_above="@id/btn_anya"
+        android:layout_marginBottom="20dp"/>
+
+    <Button android:id="@+id/btn_papa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ПАПА"
+        android:textSize="30sp"
+        android:layout_above="@id/btn_stepan"
+        android:layout_marginBottom="20dp"/>
+
+    <Button android:id="@+id/btn_mama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="МАМА"
+        android:textSize="30sp"
+        android:layout_below="@id/btn_anya"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>
