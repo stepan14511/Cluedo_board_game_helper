@@ -74,8 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/height_button_game"
                 android:textSize="@dimen/text_size_button_game"
-                android:textOn="Грин"
-                android:textOff="Грин"
+                android:textOn="Плам"
+                android:textOff="Плам"
                 android:layout_weight="1"/>
 
             <ToggleButton android:id="@+id/mr_scarlet"
@@ -151,8 +151,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/height_button_game"
                 android:textSize="@dimen/text_size_button_game"
-                android:textOn="Грин"
-                android:textOff="Грин"
+                android:textOn="Револьвер"
+                android:textOff="Револьвер"
                 android:layout_weight="1"/>
 
             <ToggleButton android:id="@+id/trumpet"
@@ -291,26 +291,55 @@
         android:layout_marginBottom="10dp"
         android:background="?android:attr/listDivider" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/divider_hor4"
         android:orientation="horizontal">
 
-        <Button
+        <TextView android:id="@+id/divider_ver"
             android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="@dimen/height_button_game"
             android:textSize="@dimen/text_size_button_game"
             android:text="Таблица"
-            android:layout_weight="1"/>
+            android:layout_toLeftOf="@id/divider_ver"/>
 
-        <Button
-            android:layout_width="0dp"
+        <Button android:id="@+id/ready_btn"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/height_button_game"
             android:textSize="@dimen/text_size_button_game"
             android:text="Готово"
-            android:layout_weight="1"/>
+            android:layout_toRightOf="@id/divider_ver"/>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/divider_ver"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/btn_yes"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:text="Да"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <Button android:id="@+id/btn_no"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:text="Нет"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
