@@ -1,5 +1,6 @@
 package com.example.cluedo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -63,6 +64,18 @@ public class GameActivity extends AppCompatActivity {
 
         if((getIntent() != null ) && (getIntent().hasExtra("names_list")))
             names_list = getIntent().getStringArrayListExtra("names_list");
+
+        //Added listener on TABLE button
+        Button table_btn = findViewById(R.id.table_btn);
+        table_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameActivity.this, TableActivity.class);
+                //Send table to intent
+                intent.putExtra("table", table);
+                startActivity(intent);
+            }
+        });
 
         first_init();
     }
