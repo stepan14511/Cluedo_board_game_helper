@@ -4,24 +4,32 @@ import android.database.sqlite.SQLiteDoneException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class TableActivity extends AppCompatActivity {
     private int HAVE_CARD_ID;
     private int DONT_HAVE_CARD_ID;
+    private int TEXT_COLOR_GREEN_THINGS;
 
-    int[][] table;
-    int[][] table_IDs;
+    private int[][] table;
+    private int[][] table_IDs;
+    private ArrayList<String> names_list;
+    private ArrayList<Integer> green_things;
+    private int[] things_IDs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
-
-        Bundle b = getIntent().getExtras();
-        table = (int[][])b.getSerializable("table");
-
         init_IDs();
 
+        Bundle bundle = getIntent().getExtras();
+        //Get and draw table
+        table = (int[][])bundle.getSerializable("table");
         for(int i = 0; i < table.length; i++){
             for(int j = 0; j < table[i].length; j++){
                 if(table[i][j] == GameActivity.HAVE_CARD) {
@@ -34,11 +42,38 @@ public class TableActivity extends AppCompatActivity {
                 }
             }
         }
+
+        //Get and draw names
+        names_list = bundle.getStringArrayList("names_list");
+        set_players_names_to_layout();
+
+        //Get and color green things
+        green_things = bundle.getIntegerArrayList("green_things");
+        color_green_things();
+    }
+
+    private void color_green_things(){
+        for(int i = 0; i < green_things.size(); i++){
+            TextView textView = findViewById(things_IDs[green_things.get(i)]);
+            textView.setTextColor(getResources().getColor(TEXT_COLOR_GREEN_THINGS));
+        }
+    }
+
+    private void set_players_names_to_layout(){
+        TextView textView = findViewById(R.id.name_0);
+        textView.setText(names_list.get(0));
+        textView = findViewById(R.id.name_1);
+        textView.setText(names_list.get(1));
+        textView = findViewById(R.id.name_2);
+        textView.setText(names_list.get(2));
+        textView = findViewById(R.id.name_3);
+        textView.setText(names_list.get(3));
     }
 
     private void init_IDs(){
         HAVE_CARD_ID = R.color.green;
         DONT_HAVE_CARD_ID = R.color.red;
+        TEXT_COLOR_GREEN_THINGS = R.color.green;
 
         table_IDs = new int[][]{
                 {R.id.table_0_0, R.id.table_1_0, R.id.table_2_0, R.id.table_3_0},
@@ -62,5 +97,10 @@ public class TableActivity extends AppCompatActivity {
                 {R.id.table_0_18, R.id.table_1_18, R.id.table_2_18, R.id.table_3_18},
                 {R.id.table_0_19, R.id.table_1_19, R.id.table_2_19, R.id.table_3_19},
                 {R.id.table_0_20, R.id.table_1_20, R.id.table_2_20, R.id.table_3_20}};
+
+        things_IDs = new int[]{R.id.thing_1, R.id.thing_2, R.id.thing_3, R.id.thing_4,R.id.thing_5,
+                R.id.thing_6, R.id.thing_7, R.id.thing_8, R.id.thing_9, R.id.thing_10, R.id.thing_11,
+                R.id.thing_12, R.id.thing_13, R.id.thing_14, R.id.thing_15, R.id.thing_16, R.id.thing_17,
+                R.id.thing_18, R.id.thing_19, R.id.thing_20, R.id.thing_21};
     }
 }
