@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class GameInitActivity extends AppCompatActivity {
-
     private static int NUMBER_OF_PLAYERS = 4;
     private ArrayList<String> names_list = new ArrayList<>();
 
@@ -27,7 +26,7 @@ public class GameInitActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                press_btn(GameActivity.NAME_ANYA);
+                press_btn(Table.NAME_ANYA);
                 Button button = findViewById(R.id.btn_anya);
                 button.setVisibility(View.INVISIBLE);
             }
@@ -36,7 +35,7 @@ public class GameInitActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                press_btn(GameActivity.NAME_MAMA);
+                press_btn(Table.NAME_MAMA);
                 Button button = findViewById(R.id.btn_mama);
                 button.setVisibility(View.INVISIBLE);
             }
@@ -45,7 +44,7 @@ public class GameInitActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                press_btn(GameActivity.NAME_PAPA);
+                press_btn(Table.NAME_PAPA);
                 Button button = findViewById(R.id.btn_papa);
                 button.setVisibility(View.INVISIBLE);
             }
@@ -54,7 +53,7 @@ public class GameInitActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                press_btn(GameActivity.NAME_STEPAN);
+                press_btn(Table.NAME_STEPAN);
                 Button button = findViewById(R.id.btn_stepan);
                 button.setVisibility(View.INVISIBLE);
             }
@@ -65,7 +64,8 @@ public class GameInitActivity extends AppCompatActivity {
         names_list.add(name);
         if(names_list.size() >= NUMBER_OF_PLAYERS){
             Intent intent = new Intent(GameInitActivity.this, GameActivity.class);
-            intent.putExtra("names_list", names_list);
+            Table table = new Table(names_list);
+            intent.putExtras(table.get_bundle());
             startActivity(intent);
         }
     }
