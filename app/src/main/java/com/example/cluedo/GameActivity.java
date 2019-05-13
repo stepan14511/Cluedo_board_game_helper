@@ -15,58 +15,18 @@ import java.util.Vector;
 
 public class GameActivity extends AppCompatActivity {
 
-    public static String NAME_STEPAN = "STEPAN";
-    public  int ID_STEPAN;
-    public static String NAME_ANYA = "ANYA";
-    public  int ID_ANYA;
-    public static String NAME_MAMA = "MAMA";
-    public  int ID_MAMA;
-    public static String NAME_PAPA = "PAPA";
-    public  int ID_PAPA;
-
-    public static int NO_INFO = 0;
-    public static int HAVE_CARD = 1;
-    public static int DONT_HAVE_CARD = 2;
-
-    public int ID_PERSON_GREEN = 0;
-    public int ID_PERSON_MASTARD = 1;
-    public int ID_PERSON_PIKOK = 2;
-    public int ID_PERSON_PLAM = 3;
-    public int ID_PERSON_SCARLET = 4;
-    public int ID_PERSON_UAIT = 5;
-
-    public int ID_THING_G_KEY = 6;
-    public int ID_THING_CANDLESTICK = 7;
-    public int ID_THING_KNIFE = 8;
-    public int ID_THING_REVOLVER = 9;
-    public int ID_THING_TRUMPET = 10;
-    public int ID_THING_ROPE = 11;
-
-    public int ID_PLACE_BATHROOM = 12;
-    public int ID_PLACE_CABINET = 13;
-    public int ID_PLACE_DINNER_ROOM = 14;
-    public int ID_PLACE_BILLIARD_ROOM = 15;
-    public int ID_PLACE_GARAGE = 16;
-    public int ID_PLACE_BEDROOM = 17;
-    public int ID_PLACE_LIVING_ROOM = 18;
-    public int ID_PLACE_KITCHEN = 19;
-    public int ID_PLACE_YARD = 20;
-
-    private ArrayList<String> names_list = new ArrayList<>();
+    private Table table;
     private int current_asker = -1;
     private int current_answerer;
-    private int[][] table; //THING ,NAME
-    private ArrayList<Integer> green_things = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        if((getIntent() != null ) && (getIntent().hasExtra("names_list")))
-            names_list = getIntent().getStringArrayListExtra("names_list");
-
-        set_IDs_to_players();
+        //Get Table object
+        Bundle bundle = getIntent().getExtras();
+        table = new Table(bundle);
 
         //Added listener on TABLE button
         Button table_btn = findViewById(R.id.table_btn);
@@ -74,12 +34,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GameActivity.this, TableActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("table", table);
-                bundle.putStringArrayList("names_list", names_list);
-                bundle.putIntegerArrayList("green_things", green_things);
-                intent.putExtras(bundle);
-                //Send table to intent
+                intent.putExtras(table.get_bundle());
                 startActivity(intent);
             }
         });
@@ -87,29 +42,8 @@ public class GameActivity extends AppCompatActivity {
         first_init();
     }
 
-    private void set_IDs_to_players(){
-        for(int i = 0; i < names_list.size(); i++){
-            if(names_list.get(i).equals(NAME_STEPAN))
-                ID_STEPAN = i;
-            if(names_list.get(i).equals(NAME_ANYA))
-                ID_ANYA = i;
-            if(names_list.get(i).equals(NAME_MAMA))
-                ID_MAMA = i;
-            if(names_list.get(i).equals(NAME_PAPA))
-                ID_PAPA = i;
-        }
-    }
-
     //Picking users cards
     private void first_init(){
-        //Generating table
-        table = new int[21][names_list.size()];
-        for(int i = 0; i < table.length; i++){
-            for(int j = 0; j < table[i].length; j++){
-                table[i][j] = NO_INFO;
-            }
-        }
-
         TextView textView = findViewById(R.id.asker);
         textView.setText("YOUR CARDS");
 
@@ -117,8 +51,7 @@ public class GameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_cards_to_table(ID_STEPAN, HAVE_CARD);
-                add_unmarked_cards_to_table(ID_STEPAN);
+                add_cards_to_table(table.ID_STEPAN, Table.HAVE_CARD);
 
                 clear_toggle_buttons();
                 change_current_asker();
@@ -127,78 +60,70 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void add_cards_to_table(int who, int state){
+        //TODO: create an array of IDs in layout and in table
         ToggleButton toggleButton = findViewById(R.id.mr_green);
         if(toggleButton.isChecked())
-            table[ID_PERSON_GREEN][who] = state;
+            table.change_card_state(Table.ID_PERSON_GREEN, who, state);
         toggleButton = findViewById(R.id.mr_mastard);
         if(toggleButton.isChecked())
-            table[ID_PERSON_MASTARD][who] = state;
+            table.change_card_state(Table.ID_PERSON_MASTARD, who, state);
         toggleButton = findViewById(R.id.mrs_pikok);
         if(toggleButton.isChecked())
-            table[ID_PERSON_PIKOK][who] = state;
+            table.change_card_state(Table.ID_PERSON_PIKOK, who, state);
         toggleButton = findViewById(R.id.mr_plam);
         if(toggleButton.isChecked())
-            table[ID_PERSON_PLAM][who] = state;
+            table.change_card_state(Table.ID_PERSON_PLAM, who, state);
         toggleButton = findViewById(R.id.mr_scarlet);
         if(toggleButton.isChecked())
-            table[ID_PERSON_SCARLET][who] = state;
+            table.change_card_state(Table.ID_PERSON_SCARLET, who, state);
         toggleButton = findViewById(R.id.mr_uait);
         if(toggleButton.isChecked())
-            table[ID_PERSON_UAIT][who] = state;
+            table.change_card_state(Table.ID_PERSON_UAIT, who, state);
         toggleButton = findViewById(R.id.g_key);
         if(toggleButton.isChecked())
-            table[ID_THING_G_KEY][who] = state;
+            table.change_card_state(Table.ID_THING_G_KEY, who, state);
         toggleButton = findViewById(R.id.candlestick);
         if(toggleButton.isChecked())
-            table[ID_THING_CANDLESTICK][who] = state;
+            table.change_card_state(Table.ID_THING_CANDLESTICK, who, state);
         toggleButton = findViewById(R.id.knife);
         if(toggleButton.isChecked())
-            table[ID_THING_KNIFE][who] = state;
+            table.change_card_state(Table.ID_THING_KNIFE, who, state);
         toggleButton = findViewById(R.id.revolver);
         if(toggleButton.isChecked())
-            table[ID_THING_REVOLVER][who] = state;
+            table.change_card_state(Table.ID_THING_REVOLVER, who, state);
         toggleButton = findViewById(R.id.trumpet);
         if(toggleButton.isChecked())
-            table[ID_THING_TRUMPET][who] = state;
+            table.change_card_state(Table.ID_THING_TRUMPET, who, state);
         toggleButton = findViewById(R.id.rope);
         if(toggleButton.isChecked())
-            table[ID_THING_ROPE][who] = state;
+            table.change_card_state(Table.ID_THING_ROPE, who, state);
         toggleButton = findViewById(R.id.bathroom);
         if(toggleButton.isChecked())
-            table[ID_PLACE_BATHROOM][who] = state;
+            table.change_card_state(Table.ID_PLACE_BATHROOM, who, state);
         toggleButton = findViewById(R.id.cabinet);
         if(toggleButton.isChecked())
-            table[ID_PLACE_CABINET][who] = state;
+            table.change_card_state(Table.ID_PLACE_CABINET, who, state);
         toggleButton = findViewById(R.id.dinner_room);
         if(toggleButton.isChecked())
-            table[ID_PLACE_DINNER_ROOM][who] = state;
+            table.change_card_state(Table.ID_PLACE_DINNER_ROOM, who, state);
         toggleButton = findViewById(R.id.billiard_room);
         if(toggleButton.isChecked())
-            table[ID_PLACE_BILLIARD_ROOM][who] = state;
+            table.change_card_state(Table.ID_PLACE_BILLIARD_ROOM, who, state);
         toggleButton = findViewById(R.id.garage);
         if(toggleButton.isChecked())
-            table[ID_PLACE_GARAGE][who] = state;
+            table.change_card_state(Table.ID_PLACE_GARAGE, who, state);
         toggleButton = findViewById(R.id.bedroom);
         if(toggleButton.isChecked())
-            table[ID_PLACE_BEDROOM][who] = state;
+            table.change_card_state(Table.ID_PLACE_BEDROOM, who, state);
         toggleButton = findViewById(R.id.living_room);
         if(toggleButton.isChecked())
-            table[ID_PLACE_LIVING_ROOM][who] = state;
+            table.change_card_state(Table.ID_PLACE_LIVING_ROOM, who, state);
         toggleButton = findViewById(R.id.kitchen);
         if(toggleButton.isChecked())
-            table[ID_PLACE_KITCHEN][who] = state;
+            table.change_card_state(Table.ID_PLACE_KITCHEN, who, state);
         toggleButton = findViewById(R.id.yard);
         if(toggleButton.isChecked())
-            table[ID_PLACE_YARD][who] = state;
-        check_table();
-    }
-
-    private void add_unmarked_cards_to_table(int who){
-        for(int i = 0; i < table.length; i++){
-            if(table[i][who] == NO_INFO)
-            table[i][who] = DONT_HAVE_CARD;
-        }
-        check_table();
+            table.change_card_state(Table.ID_PLACE_YARD, who, state);
     }
 
     private void clear_toggle_buttons(){
@@ -252,7 +177,7 @@ public class GameActivity extends AppCompatActivity {
 
         //set asker
         current_asker++;
-        if(current_asker >= names_list.size())
+        if(current_asker >= table.get_names_list_size())
             current_asker = 0;
 
         //set answerer
@@ -260,7 +185,7 @@ public class GameActivity extends AppCompatActivity {
 
         //Set current asker to header
         TextView textView = findViewById(R.id.asker);
-        textView.setText("Asker: " + names_list.get(current_asker));
+        textView.setText("Asker: " + table.get_names_list().get(current_asker));
 
         //Change buttons(in the bottom)
         Button btn = findViewById(R.id.ready_btn);
@@ -288,7 +213,7 @@ public class GameActivity extends AppCompatActivity {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        add_cards_to_table(current_answerer, DONT_HAVE_CARD);
+                        add_cards_to_table(current_answerer, Table.DONT_HAVE_CARD);
                         change_current_answerer();
                         if(current_answerer == current_asker)
                             change_current_asker();
@@ -308,26 +233,13 @@ public class GameActivity extends AppCompatActivity {
     //TODO: change current answerer
     private void change_current_answerer(){
         current_answerer++;
-        if(current_answerer >= names_list.size())
+        if(current_answerer >= table.get_names_list_size())
             current_answerer = 0;
 
         TextView textView = findViewById(R.id.asker);
-        textView.setText("Answerer: " + names_list.get(current_answerer));
-    }
-
-    private void check_table(){
-        for(int i = 0; i < table.length; i++){
-            if((table[i][0] == HAVE_CARD) || (table[i][1] == HAVE_CARD) || (table[i][2] == HAVE_CARD) || (table[i][3] == HAVE_CARD))
-                for(int j = 0; j < table[i].length; j++)
-                    if(table[i][j] != HAVE_CARD)
-                        table[i][j] = DONT_HAVE_CARD;
-            if((table[i][0] == DONT_HAVE_CARD) && (table[i][1] == DONT_HAVE_CARD) && (table[i][2] == DONT_HAVE_CARD) && (table[i][3] == DONT_HAVE_CARD)) {
-                //TODO: add colouring thing name
-                green_things.add(i);
-            }
-        }
+        textView.setText("Answerer: " + table.get_names_list().get(current_answerer));
     }
 }
-//TODO: add table class
+//TODO: change name to separate function
 //TODO: pick which card was shown
 //TODO: add array of toggle_button IDs(idk if it's needed)

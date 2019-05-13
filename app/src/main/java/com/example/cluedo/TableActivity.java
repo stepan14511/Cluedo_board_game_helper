@@ -15,10 +15,8 @@ public class TableActivity extends AppCompatActivity {
     private int DONT_HAVE_CARD_ID;
     private int TEXT_COLOR_GREEN_THINGS;
 
-    private int[][] table;
+    private Table table;
     private int[][] table_IDs;
-    private ArrayList<String> names_list;
-    private ArrayList<Integer> green_things;
     private int[] things_IDs;
 
     @Override
@@ -27,39 +25,39 @@ public class TableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table);
         init_IDs();
 
+        //Get Table object
         Bundle bundle = getIntent().getExtras();
-        //Get and draw table
-        table = (int[][])bundle.getSerializable("table");
-        for(int i = 0; i < table.length; i++){
-            for(int j = 0; j < table[i].length; j++){
-                if(table[i][j] == GameActivity.HAVE_CARD) {
+        table = new Table(bundle);
+
+        //Draw it
+        draw_table(table.get_table_for_drawing());
+        draw_players_names(table.get_names_list());
+        colour_green_things(table.get_green_things());
+    }
+
+    private void draw_table(int[][] drawable_table){
+        for(int i = 0; i < drawable_table.length; i++){
+            for(int j = 0; j < drawable_table[i].length; j++){
+                if(drawable_table[i][j] == Table.HAVE_CARD) {
                     ImageView imageView = findViewById(table_IDs[i][j]);
                     imageView.setBackgroundColor(getResources().getColor(HAVE_CARD_ID));
                 }
-                if(table[i][j] == GameActivity.DONT_HAVE_CARD){
+                if(drawable_table[i][j] == Table.DONT_HAVE_CARD){
                     ImageView imageView = findViewById(table_IDs[i][j]);
                     imageView.setBackgroundColor(getResources().getColor(DONT_HAVE_CARD_ID));
                 }
             }
         }
-
-        //Get and draw names
-        names_list = bundle.getStringArrayList("names_list");
-        set_players_names_to_layout();
-
-        //Get and color green things
-        green_things = bundle.getIntegerArrayList("green_things");
-        color_green_things();
     }
 
-    private void color_green_things(){
+    private void colour_green_things(ArrayList<Integer> green_things){
         for(int i = 0; i < green_things.size(); i++){
             TextView textView = findViewById(things_IDs[green_things.get(i)]);
             textView.setTextColor(getResources().getColor(TEXT_COLOR_GREEN_THINGS));
         }
     }
 
-    private void set_players_names_to_layout(){
+    private void draw_players_names(ArrayList<String> names_list){
         TextView textView = findViewById(R.id.name_0);
         textView.setText(names_list.get(0));
         textView = findViewById(R.id.name_1);
