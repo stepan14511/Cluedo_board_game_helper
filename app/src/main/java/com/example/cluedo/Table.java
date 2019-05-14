@@ -78,24 +78,39 @@ public class Table {
         }
     }
 
-    //region Get functions for Game activity
-    public void change_card_state(int thing_id, int name_id, int state) throws IllegalArgumentException{
-        if((state != NO_INFO) && (state != HAVE_CARD) && (state != DONT_HAVE_CARD))
-            throw new IllegalArgumentException("Wrong state argument");
-        table[thing_id][name_id] = state;
+    //region Get functions
+    public ArrayList<String> get_names_list() {
+        return names_list;
     }
+
     public int get_names_list_size(){
         return names_list.size();
     }
     //endregion
 
-    //region Get functions for Table activity
+    //region Functions for Game activity specifically
+    public void change_card_state(int thing_id, int name_id, int state) throws IllegalArgumentException{
+        if((state != NO_INFO) && (state != HAVE_CARD) && (state != DONT_HAVE_CARD))
+            throw new IllegalArgumentException("Wrong state argument");
+        table[thing_id][name_id] = state;
+
+        set_cards_that_known_for_dont_having();
+    }
+    private void set_cards_that_known_for_dont_having(){
+        for(int i = 0; i < table.length; i++){
+            if((table[i][0] == HAVE_CARD) || (table[i][1] == HAVE_CARD) || (table[i][2] == HAVE_CARD) || (table[i][3] == HAVE_CARD)){
+                for(int j = 0; j < table[i].length; j++){
+                    if(table[i][j] != HAVE_CARD)
+                        table[i][j] = DONT_HAVE_CARD;
+                }
+            }
+        }
+    }
+    //endregion
+
+    //region Get functions for Table activity specifically
     public int[][] get_table_for_drawing(){
         return table;
-    }
-
-    public ArrayList<String> get_names_list() {
-        return names_list;
     }
 
     public ArrayList<Integer> get_green_things(){
@@ -125,6 +140,4 @@ public class Table {
         return bundle;
     }
     //endregion Creating and using bundles
-
-    //TODO: Do an algorithm for each turn
 }

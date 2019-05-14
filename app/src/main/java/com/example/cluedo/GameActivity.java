@@ -243,3 +243,4 @@ public class GameActivity extends AppCompatActivity {
 //TODO: change name to separate function
 //TODO: pick which card was shown
 //TODO: add array of toggle_button IDs(idk if it's needed)
+//TODO: Do an algorithm for each turn
