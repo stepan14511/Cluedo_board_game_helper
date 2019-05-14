@@ -35,6 +35,12 @@ public class Table {
     public static int DONT_HAVE_CARD = 2;
     //endregion
 
+    //region Initializing things states
+    public static int THINGS_CLEAR = 0;
+    public static int THINGS_GREEN = 1;
+    public static int THINGS_RED = 2;
+    //endregion
+
     //region Initializing table_IDs
     public static int ID_PERSON_GREEN = 0;
     public static int ID_PERSON_MASTARD = 1;
@@ -62,7 +68,7 @@ public class Table {
     //endregion
 
     private int[][] table; //THING ,NAME
-    private ArrayList<Integer> green_things = new ArrayList<>();
+    private int[] things_states;
     private ArrayList<String> names_list;
 
     Table(ArrayList<String> names_list){
@@ -75,6 +81,12 @@ public class Table {
             for(int j = 0; j < table[i].length; j++){
                 table[i][j] = NO_INFO;
             }
+        }
+
+        //Generating things_states array
+        things_states = new int[21];
+        for(int i = 0; i < things_states.length; i++){
+            things_states[i] = THINGS_CLEAR;
         }
     }
 
@@ -96,6 +108,7 @@ public class Table {
 
         set_cards_that_known_for_dont_having();
     }
+
     private void set_cards_that_known_for_dont_having(){
         for(int i = 0; i < table.length; i++){
             if((table[i][0] == HAVE_CARD) || (table[i][1] == HAVE_CARD) || (table[i][2] == HAVE_CARD) || (table[i][3] == HAVE_CARD)){
@@ -103,6 +116,7 @@ public class Table {
                     if(table[i][j] != HAVE_CARD)
                         table[i][j] = DONT_HAVE_CARD;
                 }
+                things_states[i] = THINGS_RED;
             }
         }
     }
@@ -113,29 +127,29 @@ public class Table {
         return table;
     }
 
-    public ArrayList<Integer> get_green_things(){
-        return green_things;
+    public int[] get_things_states(){
+        return things_states;
     }
     //endregion
 
     //region Creating and using bundles
     private String BUNDLE_TABLE = "table";
     private String BUNDLE_NAMES_LIST = "names_list";
-    private String BUNDLE_GREEN_THINGS = "green_things";
+    private String BUNDLE_THINGS_STATES = "things_states";
 
     //To create a table instance from incoming bundle
     Table(Bundle bundle){
         table = (int[][])bundle.getSerializable(BUNDLE_TABLE);
         names_list = bundle.getStringArrayList(BUNDLE_NAMES_LIST);
         set_IDs_to_players();
-        green_things = bundle.getIntegerArrayList(BUNDLE_GREEN_THINGS);
+        things_states = (int[])bundle.getSerializable(BUNDLE_THINGS_STATES);
     }
 
     public Bundle get_bundle(){
         Bundle bundle = new Bundle();
         bundle.putSerializable(BUNDLE_TABLE, table);
         bundle.putStringArrayList(BUNDLE_NAMES_LIST, names_list);
-        bundle.putIntegerArrayList(BUNDLE_GREEN_THINGS, green_things);
+        bundle.putSerializable(BUNDLE_THINGS_STATES, things_states);
 
         return bundle;
     }

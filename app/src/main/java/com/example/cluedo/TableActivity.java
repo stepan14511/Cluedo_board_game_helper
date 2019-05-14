@@ -14,6 +14,7 @@ public class TableActivity extends AppCompatActivity {
     private int HAVE_CARD_ID;
     private int DONT_HAVE_CARD_ID;
     private int TEXT_COLOR_GREEN_THINGS;
+    private int TEXT_COLOR_RED_THINGS;
 
     private Table table;
     private int[][] table_IDs;
@@ -32,7 +33,7 @@ public class TableActivity extends AppCompatActivity {
         //Draw it
         draw_table(table.get_table_for_drawing());
         draw_players_names(table.get_names_list());
-        colour_green_things(table.get_green_things());
+        colour_things_states(table.get_things_states());
     }
 
     private void draw_table(int[][] drawable_table){
@@ -50,10 +51,16 @@ public class TableActivity extends AppCompatActivity {
         }
     }
 
-    private void colour_green_things(ArrayList<Integer> green_things){
-        for(int i = 0; i < green_things.size(); i++){
-            TextView textView = findViewById(things_IDs[green_things.get(i)]);
-            textView.setTextColor(getResources().getColor(TEXT_COLOR_GREEN_THINGS));
+    private void colour_things_states(int[] things_states){
+        for(int i = 0; i < things_states.length; i++){
+            if(things_states[i] == Table.THINGS_CLEAR)
+                continue;
+
+            TextView textView = findViewById(things_IDs[i]);
+            if(things_states[i] == Table.THINGS_RED)
+                textView.setTextColor(getResources().getColor(TEXT_COLOR_RED_THINGS));
+            if(things_states[i] == Table.THINGS_GREEN)
+                textView.setTextColor(getResources().getColor(TEXT_COLOR_GREEN_THINGS));
         }
     }
 
@@ -72,6 +79,7 @@ public class TableActivity extends AppCompatActivity {
         HAVE_CARD_ID = R.color.green;
         DONT_HAVE_CARD_ID = R.color.red;
         TEXT_COLOR_GREEN_THINGS = R.color.green;
+        TEXT_COLOR_RED_THINGS = R.color.red;
 
         table_IDs = new int[][]{
                 {R.id.table_0_0, R.id.table_1_0, R.id.table_2_0, R.id.table_3_0},
