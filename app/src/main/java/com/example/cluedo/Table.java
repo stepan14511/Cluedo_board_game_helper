@@ -106,17 +106,23 @@ public class Table {
             throw new IllegalArgumentException("Wrong state argument");
         table[thing_id][name_id] = state;
 
-        set_cards_that_known_for_dont_having();
+        checking_table_for_auto_completing_possibility();
     }
 
-    private void set_cards_that_known_for_dont_having(){
+    private void checking_table_for_auto_completing_possibility(){
         for(int i = 0; i < table.length; i++){
+            //Check for known cards
             if((table[i][0] == HAVE_CARD) || (table[i][1] == HAVE_CARD) || (table[i][2] == HAVE_CARD) || (table[i][3] == HAVE_CARD)){
                 for(int j = 0; j < table[i].length; j++){
                     if(table[i][j] != HAVE_CARD)
                         table[i][j] = DONT_HAVE_CARD;
                 }
                 things_states[i] = THINGS_RED;
+            }
+
+            //Check for cards, that nobody has
+            if((table[i][0] == DONT_HAVE_CARD) && (table[i][1] == DONT_HAVE_CARD) && (table[i][2] == DONT_HAVE_CARD) && (table[i][3] == DONT_HAVE_CARD)){
+                things_states[i] = THINGS_GREEN;
             }
         }
     }
