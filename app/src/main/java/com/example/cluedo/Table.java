@@ -70,10 +70,11 @@ public class Table {
     private int[][] table; //THING ,NAME
     private int[] things_states;
     private ArrayList<String> names_list;
-    private int max_num_cards = 0;
+    private int max_num_cards;
 
-    Table(ArrayList<String> names_list){
+    Table(ArrayList<String> names_list, int max_num_cards){
         this.names_list = names_list;
+        this.max_num_cards = max_num_cards;
         set_IDs_to_players();
 
         //Generating table
