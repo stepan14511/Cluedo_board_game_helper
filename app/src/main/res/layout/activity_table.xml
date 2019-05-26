@@ -68,6 +68,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="13dp"
+                android:background="?android:attr/listDivider"/>
 
         </LinearLayout>
         <LinearLayout android:id="@+id/mr_green"
@@ -285,6 +290,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="11dp"
+                android:background="?android:attr/listDivider"/>
 
         </LinearLayout>
         <LinearLayout android:id="@+id/g_key"
@@ -502,7 +512,12 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="11dp"
+                android:background="?android:attr/listDivider"/>
+            
         </LinearLayout>
         <LinearLayout android:id="@+id/bathroom"
             android:layout_width="match_parent"
