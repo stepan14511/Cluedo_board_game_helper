@@ -204,7 +204,19 @@ public class GameActivity extends AppCompatActivity {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        change_current_asker();
+                        if(table.get_names_list().get(current_asker).equals(Table.NAME_STEPAN)){
+                            clear_toggle_buttons();
+                            Button btn = findViewById(R.id.btn_yes);
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    add_cards_to_table(current_answerer, Table.HAVE_CARD);
+                                    change_current_asker();
+                                }
+                            });
+                        }
+                        else
+                            change_current_asker();
                     }
                 });
 
@@ -240,7 +252,6 @@ public class GameActivity extends AppCompatActivity {
         textView.setText("Answerer: " + table.get_names_list().get(current_answerer));
     }
 }
-//TODO: change name to separate function
-//TODO: pick which card was shown
+
 //TODO: add array of toggle_button IDs(idk if it's needed)
 //TODO: Do an algorithm for each turn
