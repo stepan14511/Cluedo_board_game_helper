@@ -70,6 +70,7 @@ public class Table {
     private int[][] table; //THING ,NAME
     private int[] things_states;
     private ArrayList<String> names_list;
+    private int max_num_cards = 0;
 
     Table(ArrayList<String> names_list){
         this.names_list = names_list;
@@ -142,6 +143,7 @@ public class Table {
     private String BUNDLE_TABLE = "table";
     private String BUNDLE_NAMES_LIST = "names_list";
     private String BUNDLE_THINGS_STATES = "things_states";
+    private String BUNDLE_MAX_NUM_CARDS = "max_num_cards";
 
     //To create a table instance from incoming bundle
     Table(Bundle bundle){
@@ -149,6 +151,7 @@ public class Table {
         names_list = bundle.getStringArrayList(BUNDLE_NAMES_LIST);
         set_IDs_to_players();
         things_states = (int[])bundle.getSerializable(BUNDLE_THINGS_STATES);
+        max_num_cards = bundle.getInt(BUNDLE_MAX_NUM_CARDS);
     }
 
     public Bundle get_bundle(){
@@ -156,6 +159,7 @@ public class Table {
         bundle.putSerializable(BUNDLE_TABLE, table);
         bundle.putStringArrayList(BUNDLE_NAMES_LIST, names_list);
         bundle.putSerializable(BUNDLE_THINGS_STATES, things_states);
+        bundle.putInt(BUNDLE_MAX_NUM_CARDS, max_num_cards);
 
         return bundle;
     }
