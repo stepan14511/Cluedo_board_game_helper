@@ -112,6 +112,7 @@ public class Table {
     }
 
     private void checking_table_for_auto_completing_possibility(){
+        //region Check for lines
         for(int i = 0; i < table.length; i++){
             //Check for known cards
             if((table[i][0] == HAVE_CARD) || (table[i][1] == HAVE_CARD) || (table[i][2] == HAVE_CARD) || (table[i][3] == HAVE_CARD)){
@@ -127,6 +128,23 @@ public class Table {
                 things_states[i] = THINGS_GREEN;
             }
         }
+        //endregion
+
+        //region Check for columns
+        for(int i = 0; i < table[0].length; i++){
+            int num_of_known_having = 0;
+            for(int j = 0; j < table.length; j++){
+                if(table[j][i] == HAVE_CARD)
+                    num_of_known_having++;
+            }
+            if(num_of_known_having >= max_num_cards){
+                for(int j = 0; j < table.length; j++){
+                    if(table[j][i] != HAVE_CARD)
+                        table[j][i] = DONT_HAVE_CARD;
+                }
+            }
+        }
+        //endregion
     }
     //endregion
 
