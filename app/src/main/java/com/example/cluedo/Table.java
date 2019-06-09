@@ -100,6 +100,10 @@ public class Table {
     public int get_names_list_size(){
         return names_list.size();
     }
+
+    public int get_state_of_the_field(int thing_id, int name_id){
+        return table[thing_id][name_id];
+    }
     //endregion
 
     //region Functions for Game activity specifically
