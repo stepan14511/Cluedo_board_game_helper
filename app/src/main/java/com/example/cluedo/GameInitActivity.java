@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class GameInitActivity extends AppCompatActivity {
     private static int NUMBER_OF_PLAYERS = 4;

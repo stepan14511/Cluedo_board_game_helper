@@ -1,18 +1,14 @@
 package com.example.cluedo;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import java.net.SecureCacheResponse;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class GameActivity extends AppCompatActivity {
 
