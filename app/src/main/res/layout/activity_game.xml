@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity"
+    android:padding="10dp">
+
+    <RelativeLayout android:id="@+id/names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/asker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_button_game"
+            android:textStyle="bold"
+            android:textColor="#ff0000"
+            android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+    <View android:id="@+id/divider_hor1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/names"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout android:id="@+id/people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_hor1">
+
+        <LinearLayout android:id="@+id/people_1_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton android:id="@+id/mr_green"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Грин"
+                android:textOff="Грин"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/mr_mastard"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Мастард"
+                android:textOff="Мастард"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/mrs_pikok"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Пикок"
+                android:textOff="Пикок"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/people_1_line">
+
+            <ToggleButton android:id="@+id/mr_plam"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Плам"
+                android:textOff="Плам"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/mr_scarlet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Скарлет"
+                android:textOff="Скарлет"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/mr_uait"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Уайт"
+                android:textOff="Уайт"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View android:id="@+id/divider_hor2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/people"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout android:id="@+id/things"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_hor2">
+
+        <LinearLayout android:id="@+id/things_1_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton android:id="@+id/g_key"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Гаечн. ключ"
+                android:textOff="Гаечн. ключ"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/candlestick"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Подсвечник"
+                android:textOff="Подсвечник"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/knife"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Кинжал"
+                android:textOff="Кинжал"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/things_1_line">
+
+            <ToggleButton android:id="@+id/revolver"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Револьвер"
+                android:textOff="Револьвер"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/trumpet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Труба"
+                android:textOff="Труба"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/rope"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Веревка"
+                android:textOff="Веревка"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View android:id="@+id/divider_hor3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/things"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout android:id="@+id/places"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_hor3">
+
+        <LinearLayout android:id="@+id/place_1_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton android:id="@+id/bathroom"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Ванн. комн."
+                android:textOff="Ванн. комн."
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/cabinet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Кабинет"
+                android:textOff="Кабинет"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/dinner_room"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Столовая"
+                android:textOff="Столовая"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/place_2_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/place_1_line">
+
+            <ToggleButton android:id="@+id/billiard_room"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Бильярдная"
+                android:textOff="Бильярдная"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/garage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Гараж"
+                android:textOff="Гараж"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/bedroom"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Спальня"
+                android:textOff="Спальня"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/place_2_line">
+
+            <ToggleButton android:id="@+id/living_room"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Гостиная"
+                android:textOff="Гостиная"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/kitchen"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Кухня"
+                android:textOff="Кухня"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/yard"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:textOn="Внутр. двор"
+                android:textOff="Внутр. двор"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View android:id="@+id/divider_hor4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/places"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_hor4"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/divider_ver"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button android:id="@+id/table_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_button_game"
+            android:textSize="@dimen/text_size_button_game"
+            android:text="Таблица"
+            android:layout_toLeftOf="@id/divider_ver"/>
+
+        <Button android:id="@+id/ready_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_button_game"
+            android:textSize="@dimen/text_size_button_game"
+            android:text="Готово"
+            android:layout_toRightOf="@id/divider_ver"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/divider_ver"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/btn_yes"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:text="Да"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <Button android:id="@+id/btn_no"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_game"
+                android:textSize="@dimen/text_size_button_game"
+                android:text="Нет"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

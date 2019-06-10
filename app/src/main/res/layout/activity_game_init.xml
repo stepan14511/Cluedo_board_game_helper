@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameInitActivity"
+    android:padding="20dp">
+
+    <Button android:id="@+id/btn_anya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="АНЯ"
+        android:textSize="30sp"
+        android:layout_centerVertical="true"/>
+
+    <Button android:id="@+id/btn_stepan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="СТЕПАН"
+        android:textSize="30sp"
+        android:layout_above="@id/btn_anya"
+        android:layout_marginBottom="20dp"/>
+
+    <Button android:id="@+id/btn_papa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ПАПА"
+        android:textSize="30sp"
+        android:layout_above="@id/btn_stepan"
+        android:layout_marginBottom="20dp"/>
+
+    <Button android:id="@+id/btn_mama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="МАМА"
+        android:textSize="30sp"
+        android:layout_below="@id/btn_anya"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose players' positions:"
+        android:textSize="22sp"
+        android:layout_above="@id/btn_papa"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView android:id="@+id/txt_num_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of cards:"
+        android:textSize="22sp"
+        android:layout_below="@id/btn_mama"
+        android:layout_marginTop="20dp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/txt_num_cards"
+        android:layout_marginTop="10dp">
+
+        <RadioButton android:id="@+id/rb_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:layout_weight="1"/>
+
+        <RadioButton android:id="@+id/rb_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:layout_weight="1"/>
+
+        <RadioButton android:id="@+id/rb_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:layout_weight="1"/>
+
+        <RadioButton android:id="@+id/rb_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:layout_weight="1"/>
+
+        <RadioButton android:id="@+id/rb_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:layout_weight="1"/>
+
+        <RadioButton android:id="@+id/rb_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+
+</RelativeLayout>

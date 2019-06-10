@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_button_game">15sp</dimen>
+    <dimen name="height_button_game">60dp</dimen>
+    <dimen name="text_size_table">15dp</dimen>
+</resources>
