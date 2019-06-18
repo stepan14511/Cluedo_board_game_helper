@@ -41,3 +41,6 @@ e
 
 # Temp files and resources
 ResourcesAndTempFiles
+
+#VSCode files
+GamePlaySimulation/.vscode
