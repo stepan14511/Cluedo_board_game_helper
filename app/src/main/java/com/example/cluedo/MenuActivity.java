@@ -16,6 +16,11 @@ public class MenuActivity extends AppCompatActivity {
         initButtons();
     }
 
+    @Override
+    public void onBackPressed(){
+        this.finishAffinity();
+    }
+
     private void initButtons(){
         Button play_button = findViewById(R.id.play_button);
         play_button.setOnClickListener(new View.OnClickListener() {

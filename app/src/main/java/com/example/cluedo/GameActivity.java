@@ -16,6 +16,7 @@ public class GameActivity extends AppCompatActivity {
     private int current_asker = -1;
     private int current_answerer;
 
+    //region System Overrided functions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,14 @@ public class GameActivity extends AppCompatActivity {
 
         first_init();
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(GameActivity.this, MenuActivity.class);
+        //intent.putExtras(table.get_bundle());
+        startActivity(intent);
+    }
+    //endregion
 
     //Picking users cards
     private void first_init(){
